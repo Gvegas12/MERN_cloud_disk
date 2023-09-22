@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export const SET_USER = "SET_USER";
+export const LOGOUT = "LOGOUT";
 
 export type User = {
   email: string;
@@ -36,9 +37,20 @@ export default function userReducer(
         isAuth: true,
       };
 
+    case LOGOUT:
+      return {
+        ...defaultState,
+        isAuth: false,
+      };
+
     default:
       return state;
   }
 }
 
 export const setUser = (user: User) => ({ type: SET_USER, payload: user });
+export const logoutAction = () => {
+  localStorage.removeItem("token");
+
+  return { type: LOGOUT };
+};

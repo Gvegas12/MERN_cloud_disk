@@ -24,7 +24,7 @@ router.post(
 
       const { email, password } = req.body;
 
-      const candidate = User.findOne({ email });
+      const candidate = await User.findOne({ email });
       if (candidate) {
         return res
           .status(400)
@@ -33,7 +33,6 @@ router.post(
 
       const hashPassword = await bcrypt.hash(password, 15);
       const user = new User({ email, password: hashPassword });
-      т;
 
       await user.save();
       return res.json({ message: "Пользователь успешно создан" });

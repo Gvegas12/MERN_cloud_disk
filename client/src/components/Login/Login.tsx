@@ -2,7 +2,7 @@ import { FC, useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 
 import UI from "../UI";
-import { auth } from "../../actions/user";
+import { signin } from "../../actions/user";
 
 import s from "./Login.module.less";
 
@@ -23,7 +23,7 @@ const Login: FC<ILoginProps> = () => {
   const onLoginHandler = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    dispatch(auth(email, password, "login"));
+    dispatch(signin(email, password, "login"));
   };
 
   return (

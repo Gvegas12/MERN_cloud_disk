@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const authRouter = require("./routes/auth.routes");
+const fileRouter = require("./routes/file.routes");
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
 app.use("/api/auth", authRouter);
+app.use("/api/files", fileRouter);
 
 const PORT = config.get("server.PORT") || 7000;
 

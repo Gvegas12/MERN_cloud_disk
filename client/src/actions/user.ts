@@ -1,14 +1,18 @@
 import { AxiosError } from "axios";
 import { Dispatch } from "redux";
 import { $api } from "../http";
-import { User, setUser } from "../reducers/userReducer/userReducer";
+import {
+  User,
+  logoutAction,
+  setUser,
+} from "../reducers/userReducer/userReducer";
 
-export type LoginResult = {
+export type AuthResult = {
   token: string;
   user: User;
 };
 
-export const auth =
+export const signin =
   (
     email: string,
     password: string,
@@ -16,7 +20,7 @@ export const auth =
   ) =>
   async (dispatch: Dispatch) => {
     try {
-      const res = await $api.post<LoginResult>(`/auth/${type}`, {
+      const res = await $api.post<AuthResult>(`/auth/${type}`, {
         email,
         password,
       });
@@ -25,7 +29,23 @@ export const auth =
       localStorage.setItem("token", res.data.token);
     } catch (e) {
       if (e instanceof AxiosError) {
-        alert(e.response?.data.message);
+        console.error(e.response?.data.message);
       }
     }
   };
+
+export const checkAuth = () => async (dispatch: Dispatch) => {
+  try {
+    const res = await $api.get<AuthResult>("/auth", {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+
+    dispatch(setUser(res.data.user));
+    localStorage.setItem("token", res.data.token);
+  } catch (e) {
+    if (e instanceof AxiosError) {
+      console.error(e.response?.data.message);
+      dispatch(logoutAction());
+    }
+  }
+};

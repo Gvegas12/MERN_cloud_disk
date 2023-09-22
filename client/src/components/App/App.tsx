@@ -1,15 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Login from "../Login/Login";
 import Registration from "../Registration/Registration";
 import Navbar from "../Navbar/Navbar";
 
 import s from "./App.module.less";
+import { useEffect } from "react";
+import { checkAuth } from "../../actions/user";
 
 function App() {
   const { isAuth } = useSelector((state: any) => state.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    dispatch(checkAuth());
+  }, [dispatch]);
 
   return (
     <BrowserRouter>

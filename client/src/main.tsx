@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./reducers";
 
-import App from "./App.tsx";
+import App from "./components/App/App.tsx";
 
 import "./assets/styles/main.less";
 

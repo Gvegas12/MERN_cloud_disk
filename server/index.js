@@ -2,7 +2,11 @@ const config = require("config");
 const express = require("express");
 const mongoose = require("mongoose");
 
+const authRouter = require("./routes/auth.routes");
+
 const app = express();
+
+app.use("/api/auth", authRouter);
 
 const PORT = config.get("server.PORT") || 7000;
 

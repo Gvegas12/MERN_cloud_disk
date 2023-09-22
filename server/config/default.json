@@ -1,6 +1,7 @@
 {
   "server": {
-    "PORT": 5000
+    "PORT": 5000,
+    "file_path": "C:\\Users\\gvega\\OneDrive\\Рабочий стол\\UlbiTV\\iteration1\\MERNCloudDisk\\server\\files"
   },
   "db": {
     "url": "mongodb://127.0.0.1:27017/mern_cloud"

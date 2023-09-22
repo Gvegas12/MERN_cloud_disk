@@ -6,6 +6,8 @@ import { store } from "./reducers";
 
 import App from "./App.tsx";
 
+import "./assets/styles/main.less";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>

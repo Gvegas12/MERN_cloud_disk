@@ -1,9 +1,10 @@
 const { Router } = require("express");
-const { check, validationResult } = require("express-validator");
-const config = require("config");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-
 const router = new Router();
+
+const authMiddleware = require("../middlewares/auth.middleware");
+const fileController = require("../controllers/file.controller");
+
+router.post("", authMiddleware, fileController.createDir);
+router.get("", authMiddleware, fileController.getFiles);
 
 module.exports = router;

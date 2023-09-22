@@ -36,4 +36,4 @@ const File = new Schema({
   ],
 });
 
-module.exports = model("File", Schema);
+module.exports = model("File", File);

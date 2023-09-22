@@ -1,5 +1,4 @@
 const fs = require("fs");
-const File = require("../models/File");
 const config = require("config");
 
 class FileService {
@@ -7,17 +6,16 @@ class FileService {
     const filePath = `${config.get("server.file_path")}\\${file.user}\\${
       file.path
     }`;
-
-    return new Promise((res, rej) => {
+    return new Promise((resolve, reject) => {
       try {
         if (!fs.existsSync(filePath)) {
           fs.mkdirSync(filePath);
-          return res({ message: "Файл успешно создан" });
+          return resolve({ message: "File was created" });
         } else {
-          return rej({ message: "Файл по такому пути уже существует" });
+          return reject({ message: "File already exist" });
         }
       } catch (e) {
-        return rej({ message: "Ошибка при обработке файла" });
+        return reject({ message: "File error" });
       }
     });
   }

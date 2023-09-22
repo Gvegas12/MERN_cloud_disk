@@ -38,7 +38,21 @@ router.post(
       const user = new User({ email, password: hashPassword });
 
       await user.save();
-      return res.json({ message: "Пользователь успешно создан" });
+
+      const token = jwt.sign({ id: user.id }, config.get("jwt.secret_key"), {
+        expiresIn: "1h",
+      });
+
+      return res.json({
+        token,
+        user: {
+          id: user.id,
+          email: user.email,
+          diskSpace: user.diskSpace,
+          usedSpace: user.usedSpace,
+          avatar: user.avatar,
+        },
+      });
     } catch (e) {
       console.log(e);
       res.send({ message: "Server error" });

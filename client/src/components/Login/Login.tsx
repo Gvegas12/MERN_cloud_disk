@@ -4,11 +4,11 @@ import { useDispatch } from "react-redux";
 import UI from "../UI";
 import { auth } from "../../actions/user";
 
-import s from "./Registration.module.less";
+import s from "./Login.module.less";
 
-interface IRegistrationProps {}
+interface ILoginProps {}
 
-const Registration: FC<IRegistrationProps> = () => {
+const Login: FC<ILoginProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -20,15 +20,15 @@ const Registration: FC<IRegistrationProps> = () => {
     setPassword(e.target.value);
   };
 
-  const onRegistrationHandler = () => {
+  const onLoginHandler = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    dispatch(auth(email, password));
+    dispatch(auth(email, password, "login"));
   };
 
   return (
-    <div className={s.Registration}>
-      <div className={s.header}>Регистрация</div>
+    <div className={s.Login}>
+      <div className={s.header}>Логин</div>
       <UI.Input
         type="text"
         value={email}
@@ -43,11 +43,11 @@ const Registration: FC<IRegistrationProps> = () => {
         placeholder="Пароль"
         className={s.input}
       />
-      <UI.Button onClick={onRegistrationHandler} className={s.btn}>
-        Зарегистрироваться
+      <UI.Button onClick={onLoginHandler} className={s.btn}>
+        Войти
       </UI.Button>
     </div>
   );
 };
 
-export default Registration;
+export default Login;

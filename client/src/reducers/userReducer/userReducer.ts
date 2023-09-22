@@ -1,12 +1,16 @@
-import { Action } from "redux";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+export const SET_USER = "SET_USER";
+
+export type User = {
+  email: string;
+  diskSpace: number;
+  userSpace: number;
+  avatar: string;
+};
 
 type UserState = {
-  user: {
-    email: string;
-    diskSpace: number;
-    userSpace: number;
-    avatar: string;
-  };
+  user: User;
   isAuth: boolean;
 };
 
@@ -17,18 +21,24 @@ const defaultState: UserState = {
     diskSpace: 0,
     userSpace: 0,
   },
-  isAuth: false,
+  isAuth: Boolean(localStorage.getItem("token")),
 };
 
 export default function userReducer(
   state: UserState = defaultState,
-  action: Action
+  action: { type: string; payload: any }
 ): UserState {
   switch (action.type) {
-    case "":
-      return state;
+    case SET_USER:
+      return {
+        ...state,
+        user: action.payload,
+        isAuth: true,
+      };
 
     default:
       return state;
   }
 }
+
+export const setUser = (user: User) => ({ type: SET_USER, payload: user });

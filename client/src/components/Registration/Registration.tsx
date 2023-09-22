@@ -13,7 +13,9 @@ const Registration: FC<IRegistrationProps> = () => {
       <UI.Input type="text" placeholder="Пароль" className={s.input} />
       <UI.Input type="text" placeholder="Логин" className={s.input} />
       <UI.Input type="text" placeholder="Логин" className={s.input} />
-      <button className={s.btn}>Войти</button>
+      <UI.Button onClick={() => console.log("click")} className={s.btn}>
+        Войти
+      </UI.Button>
     </div>
   );
 };

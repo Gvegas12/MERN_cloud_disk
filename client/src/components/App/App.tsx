@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import Login from "../Login/Login";
@@ -9,6 +9,7 @@ import Navbar from "../Navbar/Navbar";
 import s from "./App.module.less";
 import { useEffect } from "react";
 import { checkAuth } from "../../actions/user";
+import { Disk } from "../Disk/Disk";
 
 function App() {
   const { isAuth } = useSelector((state: any) => state.user);
@@ -31,6 +32,10 @@ function App() {
               <Route path="/login" element={<Login />} />
             </>
           )}
+          <Route
+            path="/"
+            element={isAuth ? <Disk /> : <Navigate to="/login" />}
+          />
         </Routes>
       </main>
     </BrowserRouter>

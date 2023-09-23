@@ -4,10 +4,11 @@ export const SET_USER = "SET_USER";
 export const LOGOUT = "LOGOUT";
 
 export type User = {
-  email: string;
+  email?: string;
   diskSpace: number;
   userSpace: number;
-  avatar: string;
+  avatar: string | undefined;
+  files: File[];
 };
 
 type UserState = {
@@ -21,6 +22,7 @@ const defaultState: UserState = {
     avatar: "",
     diskSpace: 0,
     userSpace: 0,
+    files: [],
   },
   isAuth: Boolean(localStorage.getItem("token")),
 };

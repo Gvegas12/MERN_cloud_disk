@@ -5,6 +5,7 @@ import UI from "../UI";
 import { signin } from "../../actions/user";
 
 import s from "./Registration.module.less";
+import { useNavigate } from "react-router-dom";
 
 interface IRegistrationProps {}
 
@@ -12,6 +13,7 @@ const Registration: FC<IRegistrationProps> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -24,6 +26,7 @@ const Registration: FC<IRegistrationProps> = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     dispatch(signin(email, password));
+    navigate("/");
   };
 
   return (

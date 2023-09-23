@@ -5,8 +5,8 @@ import s from "./UIButton.module.less";
 
 interface IUIButtonProps {
   children: ReactNode;
-  className: string;
-  onClick(e: MouseEvent<HTMLButtonElement>): void;
+  className?: string;
+  onClick?(e: MouseEvent<HTMLButtonElement>): void;
 }
 
 export const UIButton: FC<IUIButtonProps> = memo(

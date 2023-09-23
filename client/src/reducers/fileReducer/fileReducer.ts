@@ -5,6 +5,7 @@ const SET_FILES = "SET_FILES";
 const SET_CURRENT_DIR = "SET_CURRENT_DIR";
 
 export type File = {
+  _id: string;
   name: string;
   type: string;
   accessLink: string | undefined;

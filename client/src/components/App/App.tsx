@@ -34,7 +34,9 @@ function App() {
           )}
           <Route
             path="/"
-            element={isAuth ? <Disk /> : <Navigate to="/login" />}
+            element={
+              isAuth ? <Disk /> : <Navigate to="/login" replace={true} />
+            }
           />
         </Routes>
       </main>
